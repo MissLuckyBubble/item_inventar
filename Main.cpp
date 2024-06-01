@@ -10,6 +10,8 @@ void displayMenu() {
     std::cout << "4. Search items by name\n";
     std::cout << "5. Search items by quantity\n";
     std::cout << "6. Display inventory report\n";
+    std::cout << "7. Save inventory to file\n";
+    std::cout << "8. Load inventory from file\n";
     std::cout << "0. Exit\n";
     std::cout << "Choose an option: ";
 }
@@ -128,6 +130,22 @@ int main() {
         case 6:
             inventory.displayReport();
             break;
+        case 7:
+        {
+            std::string filename;
+            std::cout << "Enter filename to save inventory: ";
+            std::cin >> filename;
+            inventory.saveToFile(filename);
+        }
+        break;
+        case 8:
+        {
+            std::string filename;
+            std::cout << "Enter filename to load inventory: ";
+            std::cin >> filename;
+            inventory.loadFromFile(filename);
+        }
+        break;
         case 0:
             std::cout << "Exiting program.\n";
             break;

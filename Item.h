@@ -1,4 +1,3 @@
-
 #include <string>
 
 class Item {
@@ -24,5 +23,8 @@ public:
     void setSupplier(const std::string& newSupplier);
 
     void displayItem() const;
+
+    std::string serialize() const;
+    static Item deserialize(const std::string& data);
 
 };
