@@ -1,5 +1,6 @@
 #include "Inventory.h"
 #include <iostream>
+#include <string>
 
 void displayMenu() {
     std::cout << "\nMenu\n";
@@ -20,14 +21,16 @@ void addItem(Inventory& inventory) {
 
     std::cout << "Enter item ID: ";
     std::cin >> id;
+    std::cin.ignore();
     std::cout << "Enter item name: ";
-    std::cin >> name;
+    getline(std::cin, name);
     std::cout << "Enter quantity: ";
     std::cin >> quantity;
     std::cout << "Enter price: ";
     std::cin >> price;
+    std::cin.ignore();
     std::cout << "Enter supplier: ";
-    std::cin >> supplier;
+    getline(std::cin, supplier);
 
     inventory.addItem(Item(name, id, quantity, price, supplier));
     std::cout << "Item added successfully.\n";
@@ -68,14 +71,15 @@ void removeItem(Inventory& inventory) {
 void searchItemsByName(Inventory& inventory) {
     std::string name;
     std::cout << "Enter item name to search: ";
-    std::cin >> name;
+    std::cin.ignore();
+    getline(std::cin, name);
 
-    auto results = inventory.searchItemsByName(name);
+    std::vector<Item> results = inventory.searchItemsByName(name);
     if (results.empty()) {
         std::cout << "No items found with name " << name << ".\n";
     }
     else {
-        for (const auto& item : results) {
+        for (const Item& item : results) {
             item.displayItem();
         }
     }
@@ -86,8 +90,7 @@ void searchItemsByQuantity(Inventory& inventory) {
     std::cout << "Enter item quantity to search: ";
     std::cin >> quantity;
 
-    // Assuming Inventory class has searchItemsByQuantity method
-    auto results = inventory.searchItemsByQantity(quantity);
+    std::vector<Item> results = inventory.searchItemsByQantity(quantity);
     if (results.empty()) {
         std::cout << "No items found with quantity " << quantity << ".\n";
     }
