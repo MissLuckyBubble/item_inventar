@@ -8,14 +8,14 @@ void Inventory::addItem(const Item& item) {
 }
 
 bool Inventory::removeItem(int id) {
-    
-   for(int i = 0; i < items.size(); i++){
-    if(items[i].getId() == id){
-        items.erase(items.begin()+i);
-        return true;
+
+    for (int i = 0; i < items.size(); i++) {
+        if (items[i].getId() == id) {
+            items.erase(items.begin() + i);
+            return true;
+        }
     }
-   }
-   return false;
+    return false;
 }
 
 bool Inventory::updateItem(int id, int quantity, double price) {
@@ -32,7 +32,7 @@ bool Inventory::updateItem(int id, int quantity, double price) {
 std::vector<Item> Inventory::searchItemsByName(const std::string& name) const {
     std::vector<Item> result;
     for (const Item& item : items) {
-        if (item.getName() == name) {
+        if (item.getName().find(name) != std::string::npos) {
             result.push_back(item);
         }
     }
